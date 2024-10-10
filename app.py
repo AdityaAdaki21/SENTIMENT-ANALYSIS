@@ -3,6 +3,26 @@ import streamlit as st
 # Streamlit app
 st.set_page_config(page_title="Audio Sentiment Analysis", page_icon="🎵")
 
+# Custom CSS to decrease font size
+st.markdown(
+    """
+    <style>
+    body {
+        font-size: 14px;
+    }
+    .stButton button {
+        font-size: 14px;
+    }
+    .stMarkdown {
+        font-size: 14px;
+    }
+    .stSidebar .stHeader {
+        font-size: 14px;
+    }
+    </style>
+    """, unsafe_allow_html=True
+)
+
 import librosa
 import numpy as np
 import joblib
@@ -81,16 +101,3 @@ if uploaded_file is not None:
 
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
-
-st.sidebar.header("About")
-st.sidebar.info("""
-This app uses machine learning to predict the sentiment of audio files.
-It extracts features using librosa and uses a pre-trained model for prediction.
-""")
-
-st.sidebar.header("Instructions")
-st.sidebar.markdown("""
-1. Upload a WAV file using the file uploader.
-2. Click the 'Predict Sentiment' button.
-3. View the predicted sentiment and confidence scores.
-""")
